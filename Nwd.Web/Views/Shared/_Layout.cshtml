@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - ShabiOtter Application</title>
+    @Styles.Render("~/bundles/CSS/Layout")
+    @RenderSection("Styles", false)
+    
 </head>
 <body>
     <div class="navbar navbar-fixed-top" style="position: relative;">
@@ -23,5 +26,9 @@
     <div class="container">
         @RenderBody()
     </div>
+    @Scripts.Render("~/bundles/JS/jquery")
+    @Scripts.Render("~/bundles/JS/knockout")
+    @RenderSection( "Scripts", false )
+    
 </body>
 </html>
