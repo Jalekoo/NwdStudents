@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Http;
 
 namespace Nwd.Web.Areas.Api
 {
@@ -14,10 +15,10 @@ namespace Nwd.Web.Areas.Api
 
         public override void RegisterArea( AreaRegistrationContext context )
         {
-            context.MapRoute(
-                "Api_default",
-                "Api/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+            context.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
             );
         }
     }

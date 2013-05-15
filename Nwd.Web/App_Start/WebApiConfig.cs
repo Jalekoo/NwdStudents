@@ -12,7 +12,7 @@ namespace Nwd.Web
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
+                name: "DefaultApiRoute",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
