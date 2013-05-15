@@ -5,6 +5,23 @@
     <title>@ViewBag.Title - ShabiOtter Application</title>
 </head>
 <body>
-    @RenderBody()
+    <div class="navbar navbar-fixed-top" style="position: relative;">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">ShabiOtter Apps</a>
+                <ul class="nav">
+                    <li class="active"><a href="#">Mes albums</a></li>
+                    <li><a href="#">Mes playlists</a></li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li><a href="#"><i class="icon-wrench icon-white"></i>Mes paramètres</a></li>
+                    <li><a href="#"><i class="icon-user icon-white"></i>Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
 </body>
 </html>
