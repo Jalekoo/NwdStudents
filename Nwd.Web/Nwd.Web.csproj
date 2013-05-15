@@ -209,7 +209,7 @@
     <Content Include="Scripts\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Scripts\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Content\Layout.less" />
+    <Content Include="Content\Layout.css" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />

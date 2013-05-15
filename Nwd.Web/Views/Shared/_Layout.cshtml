@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - ShabiOtter Application</title>
+    @Styles.Render("~/bundles/CSS/bootstrap")
     @Styles.Render("~/bundles/CSS/Layout")
+    
     @RenderSection("Styles", false)
     
 </head>
@@ -27,6 +29,7 @@
         @RenderBody()
     </div>
     @Scripts.Render("~/bundles/JS/jquery")
+    @Scripts.Render("~/bundles/JS/bootstrap")
     @Scripts.Render("~/bundles/JS/knockout")
     @RenderSection( "Scripts", false )
     
