@@ -28,3 +28,4 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 packages/
 *.mp3
+Nwd.Web/App_Data/*
