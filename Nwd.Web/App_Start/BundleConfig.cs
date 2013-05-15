@@ -12,6 +12,10 @@ namespace Nwd.Web
             bundles.Add( new ScriptBundle( "~/bundles/JS/jquery" ).Include( "~/Scripts/jquery-{version}.js" ).Include("~/Scripts/jquery-ui-1.10.2.js" ));
             bundles.Add( new ScriptBundle( "~/bundles/JS/bootstrap").Include("~/Scripts/bootstrap/js/bootstrap.js") );
             bundles.Add( new ScriptBundle( "~/bundles/JS/knockout" ).Include( "~/Scripts/knockout-2.2.1.js" ) );
+            bundles.Add( new ScriptBundle( "~/bundles/JS/shabi" ).
+                Include( "~/Scripts/shabi/shabi-class.js", 
+                    "~/Scripts/vm/shabi-vm.js", 
+                    "~/Scripts/vm/shabi-collection.js" ) );
             
             #endregion
 

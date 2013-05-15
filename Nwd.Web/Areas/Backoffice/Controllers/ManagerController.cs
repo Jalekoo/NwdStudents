@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Nwd.Web.Areas.Backoffice.Controllers
 {
-    public class HomeController : Controller
+    public class ManagerController : Controller
     {
         //
-        // GET: /Backoffice/Home/
+        // GET: /Backoffice/Album/
 
         public ActionResult Index()
         {
