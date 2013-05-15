@@ -116,6 +116,9 @@
   <ItemGroup>
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\AlbumController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,10 +224,8 @@
     <Folder Include="Areas\Api\Controllers\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Api\Views\Shared\" />
-    <Folder Include="Areas\Backoffice\Controllers\" />
     <Folder Include="Areas\Backoffice\Models\" />
     <Folder Include="Areas\Backoffice\Views\Shared\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
