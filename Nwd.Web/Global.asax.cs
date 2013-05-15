@@ -25,6 +25,7 @@ namespace Nwd.Web
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
             BundleConfig.RegisterBundles( BundleTable.Bundles );
+            
             Database.SetInitializer( new DropCreateDatabaseAlways<NwdBackOfficeContext>() );
             Database.SetInitializer( new DropCreateDatabaseAlways<NwdFrontOfficeContext>() );
 
