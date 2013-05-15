@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Data.Entity;
+using Nwd.BackOffice.Model;
+using Nwd.FrontOffice.Model;
+using System.Diagnostics;
 
 namespace Nwd.Web
 {
@@ -19,6 +23,22 @@ namespace Nwd.Web
             WebApiConfig.Register( GlobalConfiguration.Configuration );
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
+
+            Database.SetInitializer( new DropCreateDatabaseAlways<NwdBackOfficeContext>() );
+            Database.SetInitializer( new DropCreateDatabaseAlways<NwdFrontOfficeContext>() );
+
+            using( var ctx = new NwdBackOfficeContext() )
+            {
+                ctx.Database.Initialize( true );
+                Debug.Assert( ctx.Database.Exists() );
+                Console.WriteLine( ctx.Database.Connection.ConnectionString );
+            }
+            using( var ctx = new NwdFrontOfficeContext() )
+            {
+                ctx.Database.Initialize( true );
+                Debug.Assert( ctx.Database.Exists() );
+                Console.WriteLine( ctx.Database.Connection.ConnectionString );
+            }
         }
     }
 }

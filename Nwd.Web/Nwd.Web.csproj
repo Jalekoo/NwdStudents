@@ -41,9 +41,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -237,6 +241,16 @@
     <Content Include="Views\_ViewStart.cshtml">
       <SubType>Code</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nwd.BackOffice\Nwd.BackOffice.csproj">
+      <Project>{c38e58af-920c-488b-b0a6-420d8b50b060}</Project>
+      <Name>Nwd.BackOffice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nwd.FrontOffice\Nwd.FrontOffice.csproj">
+      <Project>{9a01cce5-c016-4e3a-bfcc-1124c6390083}</Project>
+      <Name>Nwd.FrontOffice</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
