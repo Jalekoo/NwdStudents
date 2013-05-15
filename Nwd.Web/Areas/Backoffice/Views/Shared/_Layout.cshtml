@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - ShabiOtter Application</title>
+    @Styles.Render("~/bundles/CSS/bootstrap")
+    @Styles.Render("~/bundles/CSS/Layout")
+    
+    @RenderSection("Styles", false)
+    
+</head>
+<body>
+    <div class="navbar navbar-fixed-top" style="position: relative;">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">ShabiOtter Apps</a>
+                <ul class="nav">
+                    <li class="active"><a href="#">Mes albums</a></li>
+                    <li><a href="#">Mes playlists</a></li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li><a href="#"><i class="icon-wrench"></i>&nbsp;Mes paramètres</a></li>
+                    <li><a href="#"><i class="icon-user"></i>&nbsp;Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="main" class="container">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/JS/jquery")
+    @Scripts.Render("~/bundles/JS/bootstrap")
+    @Scripts.Render("~/bundles/JS/knockout")
+    @RenderSection( "Scripts", false )
+    
+</body>
+</html>
