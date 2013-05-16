@@ -9,9 +9,14 @@ namespace Nwd.Authentication.Model
 {
     public class Role
     {
-        [Key]
-        public int Id { get; set; }
+        public Role()
+        {
+            Users = new HashSet<User>();
+        }
 
+        [Key]
         public string RoleName { get; set; }
+
+        public ICollection<User> Users { get; set; }
     }
 }

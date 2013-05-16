@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Nwd.Authentication.Model;
 
 namespace Nwd.Authentication.Security
 {
@@ -18,57 +19,86 @@ namespace Nwd.Authentication.Security
         {
             get
             {
-                throw new NotImplementedException();
+                return "NwdRoleProvider";
             }
             set
             {
-                throw new NotImplementedException();
+                return;
             }
         }
 
         public override void CreateRole( string roleName )
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                Role r = c.Roles.Where( m => m.RoleName == roleName ).FirstOrDefault();
+                if( r != null ) return;
+
+                c.Roles.Add( new Role() { RoleName = roleName } );
+            }
         }
 
         public override bool DeleteRole( string roleName, bool throwOnPopulatedRole )
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                Role r = c.Roles.Where( m => m.RoleName == roleName ).FirstOrDefault();
+                if( r == null ) return false;
+
+                c.Roles.Remove( r );
+                c.SaveChanges();
+                return true;
+            }
         }
 
         public override string[] FindUsersInRole( string roleName, string usernameToMatch )
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override string[] GetAllRoles()
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                return c.Roles.Select( m => m.RoleName ).ToArray();
+            }
         }
 
         public override string[] GetRolesForUser( string username )
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                return c.Users.Where( m => m.Username == username ).SelectMany( m => m.Roles ).Select( m => m.RoleName ).ToArray();
+            }
         }
 
         public override string[] GetUsersInRole( string roleName )
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                return c.Roles.Where( r => r.RoleName == roleName ).SelectMany( u => u.Users.Select( m => m.Username ) ).ToArray();
+            }
         }
 
         public override bool IsUserInRole( string username, string roleName )
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                return c.Roles.Where( r => r.RoleName == roleName ).SelectMany( u => u.Users.Where( m => m.Username == username ) ).Any();
+            }
         }
 
         public override void RemoveUsersFromRoles( string[] usernames, string[] roleNames )
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override bool RoleExists( string roleName )
         {
-            throw new NotImplementedException();
+            using( var c = new NwdAuthContext() )
+            {
+                return c.Roles.Where( r => r.RoleName == roleName ).Any();
+            }
         }
     }
 }

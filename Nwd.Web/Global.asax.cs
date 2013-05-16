@@ -26,30 +26,6 @@ namespace Nwd.Web
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
             BundleConfig.RegisterBundles( BundleTable.Bundles );
-            
-
-            Database.SetInitializer( new DropCreateDatabaseIfModelChanges<NwdBackOfficeContext>() );
-            Database.SetInitializer( new DropCreateDatabaseIfModelChanges<NwdFrontOfficeContext>() );
-            Database.SetInitializer( new DropCreateDatabaseIfModelChanges<NwdAuthContext>() );
-
-            using( var ctx = new NwdBackOfficeContext() )
-            {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
-            }
-            using( var ctx = new NwdFrontOfficeContext() )
-            {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
-            }
-            using( var ctx = new NwdAuthContext() )
-            {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
-            }
         }
     }
 }

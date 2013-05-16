@@ -217,6 +217,7 @@
     <Content Include="Areas\Backoffice\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Backoffice\Views\_ViewStart.cshtml" />
     <Content Include="connectionStrings.config" />
+    <Content Include="Areas\Backoffice\Views\Album\Index.cshtml" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
