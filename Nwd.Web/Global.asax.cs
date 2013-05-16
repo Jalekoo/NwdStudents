@@ -10,6 +10,7 @@ using System.Data.Entity;
 using Nwd.BackOffice.Model;
 using Nwd.FrontOffice.Model;
 using System.Diagnostics;
+using Nwd.Authentication.Model;
 
 namespace Nwd.Web
 {
@@ -27,8 +28,9 @@ namespace Nwd.Web
             BundleConfig.RegisterBundles( BundleTable.Bundles );
             
 
-            Database.SetInitializer( new DropCreateDatabaseAlways<NwdBackOfficeContext>() );
-            Database.SetInitializer( new DropCreateDatabaseAlways<NwdFrontOfficeContext>() );
+            Database.SetInitializer( new DropCreateDatabaseIfModelChanges<NwdBackOfficeContext>() );
+            Database.SetInitializer( new DropCreateDatabaseIfModelChanges<NwdFrontOfficeContext>() );
+            Database.SetInitializer( new DropCreateDatabaseIfModelChanges<NwdAuthContext>() );
 
             using( var ctx = new NwdBackOfficeContext() )
             {
@@ -37,6 +39,12 @@ namespace Nwd.Web
                 Console.WriteLine( ctx.Database.Connection.ConnectionString );
             }
             using( var ctx = new NwdFrontOfficeContext() )
+            {
+                ctx.Database.Initialize( true );
+                Debug.Assert( ctx.Database.Exists() );
+                Console.WriteLine( ctx.Database.Connection.ConnectionString );
+            }
+            using( var ctx = new NwdAuthContext() )
             {
                 ctx.Database.Initialize( true );
                 Debug.Assert( ctx.Database.Exists() );

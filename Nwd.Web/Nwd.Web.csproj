@@ -130,6 +130,7 @@
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Backoffice\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,6 +240,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,6 +261,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nwd.Authentication\Nwd.Authentication.csproj">
+      <Project>{aeab37f7-82f1-4eeb-b551-8d0e6762da3c}</Project>
+      <Name>Nwd.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nwd.BackOffice\Nwd.BackOffice.csproj">
       <Project>{c38e58af-920c-488b-b0a6-420d8b50b060}</Project>
       <Name>Nwd.BackOffice</Name>
