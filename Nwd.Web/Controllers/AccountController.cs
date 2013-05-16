@@ -53,7 +53,7 @@ namespace Nwd.Web.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction( "Index" );
+            return RedirectToAction( "LogIn" );
         }
     }
 }

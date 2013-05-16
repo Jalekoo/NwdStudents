@@ -16,6 +16,5 @@ namespace Nwd.Web.Areas.Backoffice.Controllers
         {
             return View();
         }
-
     }
 }
