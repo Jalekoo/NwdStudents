@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\NwdAuthContext.cs" />
+    <Compile Include="Model\Role.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ProviderUtils.cs" />
     <Compile Include="Security\NwdMembershipProvider.cs" />
     <Compile Include="Security\NwdRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

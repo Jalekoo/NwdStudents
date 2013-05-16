@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - ShabiOtter Application</title>
-    @Styles.Render("~/bundles/CSS/bootstrap")
-    @Styles.Render("~/bundles/CSS/Layout")
-    
-    @RenderSection("Styles", false)
-    
+    @Styles.Render( "~/bundles/CSS/bootstrap" )
+    @Styles.Render( "~/bundles/CSS/Layout" )
+
+    @RenderSection( "Styles", false )
+
 </head>
 <body>
     <div class="navbar navbar-fixed-top" style="position: relative;">
@@ -20,7 +20,7 @@
                 </ul>
                 <ul class="nav pull-right">
                     <li><a href="#"><i class="icon-wrench"></i>&nbsp;Mes paramètres</a></li>
-                    <li><a href="#"><i class="icon-user"></i>&nbsp;Déconnexion</a></li>
+                    <li><a href="@Url.Action( "LogOut", "Account", new { Area = "" } )"><i class="icon-user"></i>&nbsp;Déconnexion</a></li>
                 </ul>
             </div>
         </div>
@@ -28,10 +28,10 @@
     <div id="main" class="container">
         @RenderBody()
     </div>
-    @Scripts.Render("~/bundles/JS/jquery")
-    @Scripts.Render("~/bundles/JS/bootstrap")
-    @Scripts.Render("~/bundles/JS/knockout")
+    @Scripts.Render( "~/bundles/JS/jquery" )
+    @Scripts.Render( "~/bundles/JS/bootstrap" )
+    @Scripts.Render( "~/bundles/JS/knockout" )
     @RenderSection( "Scripts", false )
-    
+
 </body>
 </html>

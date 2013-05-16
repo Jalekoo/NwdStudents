@@ -13,7 +13,9 @@ namespace Nwd.Authentication.Model
             : base( "NwdMusikAuth" )
         {
         }
-        
+
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
     }
 }
