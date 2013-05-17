@@ -129,7 +129,9 @@
     <Compile Include="Areas\Api\Controllers\ArtistController.cs" />
     <Compile Include="Areas\Api\Controllers\PlaylistController.cs" />
     <Compile Include="Areas\Api\Controllers\PlaylistTrackController.cs" />
+    <Compile Include="Areas\Api\Controllers\SongController.cs" />
     <Compile Include="Areas\Api\Controllers\TrackController.cs" />
+    <Compile Include="Models\TrackRegisterViewModel.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -235,6 +237,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Areas\Backoffice\Views\Manager\_ArtistForm.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Manager\Musics.cshtml" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
@@ -277,7 +280,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Backoffice\Models\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

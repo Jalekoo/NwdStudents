@@ -22,5 +22,10 @@ namespace Nwd.Web.Areas.Backoffice.Controllers
         {
             return View();
         }
+
+        public ActionResult Musics()
+        {
+            return View();
+        }
     }
 }
