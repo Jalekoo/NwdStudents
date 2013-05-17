@@ -1,2 +1,2 @@
-﻿<li><a href="#"><i class="icon-wrench icon-white"></i>&nbsp;@HttpContext.Current.User.Identity.Name</a></li>
-<li><a href="@Url.Action( "LogOut", "Account", new { Area = "" } )"><i class="icon-user icon-white"></i>&nbsp;Déconnexion</a></li>
+﻿<li><a href="@Url.Action( "LogOut", "Account", new { Area = "" } )"><i class="icon-user icon-white"></i>&nbsp;Déconnexion</a></li>
+<li><span style="color: white; display:block; float: none; padding: 14.5px 15px 14.5px;">Vous êtes connecté en tant que : <strong>@HttpContext.Current.User.Identity.Name</strong></span></li>

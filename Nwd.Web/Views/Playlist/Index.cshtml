@@ -2,4 +2,32 @@
     ViewBag.CurrentSection = "Playlists";
 }
 
-<h2>Playlist</h2>
+<h3>Mes playlists</h3>
+<div class="accordion" id="playlists">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#playlists" href="#collapseOne">Mon nom de playlist 1
+            </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+            <div class="accordion-inner">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Morceau</th>
+                            <th>Album</th>
+                            <th>Artiste</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>un morceau !</td>
+                            <td>un album!</td>
+                            <td>Pouf !</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
