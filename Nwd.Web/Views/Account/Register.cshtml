@@ -1,5 +1,37 @@
-﻿@{
+﻿@model Nwd.Authentication.ViewModels.RegisterViewModel
+@{
     ViewBag.CurrentSection = "Register";
 }
 
-<h2>Register</h2>
+<h3>S'inscrire sur ShabiOtter Music App</h3>
+@using( Html.BeginForm( "Register", "Account", FormMethod.Post, new { @class = "form-horizontal" } ) )
+{
+    <div style="width: 550px; margin-right: auto; margin-left: auto;">
+        <div class="control-group">
+            @Html.LabelFor( m => m.Username, new { @class = "control-label" } )
+            <div class="controls">
+                @Html.EditorFor( m => m.Username )
+                @Html.ValidationMessageFor( m => m.Username )
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor( m => m.Password, new { @class = "control-label" } )
+            <div class="controls">
+                @Html.EditorFor( m => m.Password )
+                @Html.ValidationMessageFor( m => m.Password )
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor( m => m.Email, new { @class = "control-label" } )
+            <div class="controls">
+                @Html.EditorFor( m => m.Email )
+                @Html.ValidationMessageFor( m => m.Email )
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">S'inscrire maintenant !</button>
+            </div>
+        </div>
+    </div>
+}

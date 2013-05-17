@@ -41,8 +41,8 @@ namespace Nwd.Authentication.Security
             _passwordStrengthRegularExpression = Convert.ToString( ProviderUtils.GetConfigValue( config, "passwordStrengthRegularExpression", string.Empty ) );
             _enablePasswordReset = Convert.ToBoolean( ProviderUtils.GetConfigValue( config, "enablePasswordReset", "true" ) );
             _enablePasswordRetrieval = Convert.ToBoolean( ProviderUtils.GetConfigValue( config, "enablePasswordRetrieval", "false" ) );
-            _requiresQuestionAndAnswer = Convert.ToBoolean( ProviderUtils.GetConfigValue( config, "requiresQuestionAndAnswer", "true" ) );
-            _requiresUniqueEmail = Convert.ToBoolean( ProviderUtils.GetConfigValue( config, "requiresUniqueEmail", "true" ) );
+            _requiresQuestionAndAnswer = Convert.ToBoolean( ProviderUtils.GetConfigValue( config, "requiresQuestionAndAnswer", "false" ) );
+            _requiresUniqueEmail = Convert.ToBoolean( ProviderUtils.GetConfigValue( config, "requiresUniqueEmail", "false" ) );
 
             switch( config["passwordFormat"] ?? "Hashed" )
             {

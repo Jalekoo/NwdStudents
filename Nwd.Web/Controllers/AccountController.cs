@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Nwd.Authentication.Model;
+using Nwd.Authentication.Security;
 using Nwd.Authentication.ViewModels;
 
 namespace Nwd.Web.Controllers
@@ -36,7 +38,7 @@ namespace Nwd.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError( "", "The username or password is incorrect." );
+                    ModelState.AddModelError( "", "Nom d'utilisateur ou mot de passe incorrect." );
                 }
             }
 
@@ -46,6 +48,34 @@ namespace Nwd.Web.Controllers
         public ActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register( RegisterViewModel model )
+        {
+            if( ModelState.IsValid )
+            {
+                using( var ctx = new NwdAuthContext() )
+                {
+                    if( ctx.Users.Any( m => m.Username == model.Username ) )
+                        ModelState.AddModelError( "Username", "Ce nom d'utilisateur existe déjà !" );
+                    else
+                    {
+                        try
+                        {
+                            User u = ctx.Users.Add( new User { Username = model.Username, Name = "NwdProvider", Password = AuthenticationUtils.HashPassword( model.Password ), Email = model.Email, CreationDate = DateTime.UtcNow } );
+                            u.Roles.Add( ctx.Roles.Where( r => r.RoleName == "User" ).FirstOrDefault() );
+                            ctx.SaveChanges();
+                            return View( "RegisterSuccess" );
+                        }
+                        catch( MembershipCreateUserException ex )
+                        {
+                            ModelState.AddModelError( "", ex.Message );
+                        }
+                    }
+                }
+            }
+            return View( model );
         }
 
         public ActionResult LogOut()
