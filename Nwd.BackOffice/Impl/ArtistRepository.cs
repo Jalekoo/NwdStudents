@@ -48,5 +48,13 @@ namespace Nwd.BackOffice.Impl
 
             return artist;
         }
+
+        public Artist GetArtistForEdit( int idArtist )
+        {
+            using( var ctx = new NwdBackOfficeContext() )
+            {
+                return ctx.Artists.Include( "Album" ).SingleOrDefault( a => a.Id == idArtist );
+            }
+        }
     }
 }
