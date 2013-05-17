@@ -54,6 +54,7 @@
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="ProviderUtils.cs" />
+    <Compile Include="Security\AuthenticationUtils.cs" />
     <Compile Include="Security\NwdMembershipProvider.cs" />
     <Compile Include="Security\NwdRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,7 +20,7 @@ namespace Nwd.Authentication.Security
         bool _enablePasswordReset;
         bool _enablePasswordRetrieval;
         int _maxInvalidPasswordAttempts;
-        private MachineKeySection machineKey;
+        private MachineKeySection _machineKey;
         int _minRequiredNonAlphanumericCharacters;
         int _minRequiredPasswordLength;
         int _passwordAttemptWindow;
@@ -82,7 +82,7 @@ namespace Nwd.Authentication.Security
             }
 
             Configuration configuration = WebConfigurationManager.OpenWebConfiguration( HostingEnvironment.ApplicationVirtualPath );
-            machineKey = (MachineKeySection)configuration.GetSection( "system.web/machineKey" );
+            _machineKey = (MachineKeySection)configuration.GetSection( "system.web/machineKey" );
         }
 
         public override string ApplicationName { get { return _applicationName; } set { _applicationName = value; } }
@@ -340,12 +340,11 @@ namespace Nwd.Authentication.Security
                     encodedPassword = Convert.ToBase64String( EncryptPassword( Encoding.Unicode.GetBytes( password ) ) );
                     break;
                 case MembershipPasswordFormat.Hashed:
-                    HMACSHA1 hash = new HMACSHA1 { Key = HexToByte( machineKey.ValidationKey ) };
+                    HMACSHA1 hash = new HMACSHA1 { Key = HexToByte( _machineKey.ValidationKey ) };
                     encodedPassword = Convert.ToBase64String( hash.ComputeHash( Encoding.Unicode.GetBytes( password ) ) );
                     break;
                 default:
                     throw new ProviderException( "Unsupported password format" );
-                //EF_MembershipProvider_EncodePassword_UnsupportedPasswordFormat
             }
 
             return encodedPassword;

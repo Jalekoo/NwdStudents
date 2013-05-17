@@ -8,6 +8,8 @@ using Nwd.BackOffice.Model;
 using Nwd.FrontOffice.Model;
 using Nwd.Authentication.Model;
 using System.Diagnostics;
+using Nwd.Authentication.Security;
+using System.Web.Security;
 
 namespace Nwd.Tests
 {
@@ -21,23 +23,29 @@ namespace Nwd.Tests
             Database.SetInitializer( new DropCreateDatabaseAlways<NwdFrontOfficeContext>() );
             Database.SetInitializer( new DropCreateDatabaseAlways<NwdAuthContext>() );
 
-            using( var ctx = new NwdBackOfficeContext() )
+            using( var b = new NwdBackOfficeContext() )
             {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
+                b.Database.Initialize( true );
+                Debug.Assert( b.Database.Exists() );
+                Console.WriteLine( b.Database.Connection.ConnectionString );
             }
-            using( var ctx = new NwdFrontOfficeContext() )
+            using( var f = new NwdFrontOfficeContext() )
             {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
+                f.Database.Initialize( true );
+                Debug.Assert( f.Database.Exists() );
+                Console.WriteLine( f.Database.Connection.ConnectionString );
             }
-            using( var ctx = new NwdAuthContext() )
+            using( var a = new NwdAuthContext() )
             {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
+                a.Database.Initialize( true );
+                Debug.Assert( a.Database.Exists() );
+                Console.WriteLine( a.Database.Connection.ConnectionString );
+                a.Roles.Add( new Role { RoleName = "User" } );
+                Role r = a.Roles.Add( new Role { RoleName = "Administrator" } );
+                Nwd.Authentication.Model.User u = a.Users.Add( new Nwd.Authentication.Model.User { Username = "SuperAdmin", Name = "NwdProvider", Comment = "user admin", IsApproved = true, IsLockedOut = false, Password = AuthenticationUtils.HashPassword( "test" ), CreationDate = DateTime.UtcNow } );
+                u.Roles.Add( r );
+
+                a.SaveChanges();
             }
         }
     }
