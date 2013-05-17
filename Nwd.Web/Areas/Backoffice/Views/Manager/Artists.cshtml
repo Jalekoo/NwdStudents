@@ -1,12 +1,13 @@
 ﻿@{
     ViewBag.Title = "Artists";
+    ViewBag.CurrentSection = "Artist";
 }
 
 @section Scripts{
     <script type="text/javascript">
         $('a[data-toggle="tooltip"]').tooltip();
     </script>
-    @Scripts.Render("~/bundles/JS/Album")
+    @Scripts.Render("~/bundles/JS/Artist")
 }
 <div id="artist-manager" class="carousel slide" data-bind="with: SO.VM.Current.Artist">
     <div class="carousel-inner">
@@ -21,21 +22,21 @@
             </div>
             <!-- ko with: Collection -->
             <div class="album-list" data-bind="foreach: Items">
-                @Html.Partial("_Album")
+                @Html.Partial("_Artist")
             </div>
             <!-- /ko -->
         </div>
-        <div id="section-album-create" class="item" data-bind="with: New">
+        <div id="section-artist-create" class="item" data-bind="with: New">
             <div class="title form-inline">
                 <div class="style" style="background-color: green"></div>
                 <div class="title-inner">
                     <p class="text" data-bind="text: 'Nouvel Artiste : ' + Name()"></p>
-                    <button class="btn btn-success pull-right" data-bind="click: function () { $parent.addAlbum($data); }">Ajouter</button>
+                    <button class="btn btn-success pull-right" data-bind="click: function () { $parent.addArtist($data); }">Ajouter</button>
                     <button class="btn btn pull-right" data-bind="click: $parent.list">Retour</button>
                 </div>
             </div>
-            <div class="album-create">
-                @Html.Partial("_AlbumForm")
+            <div class="artist-create">
+                @Html.Partial("_ArtistForm")
             </div>
         </div>
     </div>

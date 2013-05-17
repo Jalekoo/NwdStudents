@@ -72,7 +72,13 @@ namespace Nwd.BackOffice.Impl
             }
         }
 
-
+        public List<Track> GetTrack( int idAlbum )
+        {
+            using( var ctx = new NwdBackOfficeContext() )
+            {
+                return ctx.Albums.Where( a => a.Id == idAlbum ).SelectMany( m => m.Tracks ).ToList();
+            }
+        }
 
         public Album GetAlbumForEdit( int idAlbum )
         {
@@ -131,7 +137,7 @@ namespace Nwd.BackOffice.Impl
             directory = String.Format( "/Content/musics/{0}/", album.Title );
             physDirectory = server.MapPath( directory );
             if( !Directory.Exists( physDirectory ) )
-            {
+            {  
                 Directory.CreateDirectory( physDirectory );
             }
         }

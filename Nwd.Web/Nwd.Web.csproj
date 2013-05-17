@@ -208,6 +208,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Content\white.png" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Artist\artist.jpg" />
     <Content Include="Scripts\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap.css" />
@@ -225,6 +226,15 @@
     <Content Include="Areas\Backoffice\Views\Shared\Modal\_EditAlbum.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\Modal\_AlbumDelete.cshtml" />
     <Content Include="Areas\Backoffice\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Album\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Manager\Artists.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Backoffice\Views\Manager\_Album.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Manager\_Artist.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Backoffice\Views\Manager\_ArtistForm.cshtml" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
@@ -241,6 +251,8 @@
     <Content Include="Scripts\shabi\shabi-collection.js" />
     <Content Include="Scripts\vm\Album.js" />
     <Content Include="Scripts\vm\Playlist.js" />
+    <Content Include="Scripts\vm\Artist.js" />
+    <Content Include="Scripts\vm\common.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

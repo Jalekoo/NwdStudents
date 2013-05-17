@@ -1,18 +1,15 @@
-﻿<div class="album">
-    <div class="album-info">
-        <div class="album-info-inner">
-            <div class="album-info-wrapper">
-                <p class="album-name" data-bind="text: Title"></p>
-                <p class="album-artist" data-bind="text: Artist.Name">Shabi & Otter</p>
-                <p class="album-year">2013</p>
+﻿<div class="app-item">
+    <div class="app-item-info">
+        <div class="app-item-picture-wrapper">
+            <div class="app-item-picture">
             </div>
-            <div class="album-info-actions">
+            <div class="app-item-actions">
                 <ul>
                     <li>
-                        <a href="#" data-toggle="tooltip" data-placement="left" title="delete" data-bind="click: function () { SO.VM.Current.Album.deleteAlbum($data); }"><i class="icon-white icon-remove"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="delete" data-bind="click: function () { SO.VM.Current.Artist.deleteArtist($data); }"><i class="icon-white icon-remove"></i></a>
                     </li>
                     <li>
-                            <a href="#" data-toggle="tooltip" data-placement="left" title="edit" data-bind="click: function () { SO.VM.Current.Album.editAlbum($data); }"><i class="icon-white icon-edit"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="edit" data-bind="click: function () { SO.VM.Current.Artist.editArtist($data); }"><i class="icon-white icon-edit"></i></a>
                     </li>
                     <li> 
                         <a href="#" data-toggle="tooltip" data-placement="left" title="play"><i class="icon-white icon-play-circle"></i></a>
@@ -24,11 +21,9 @@
             </div>
         </div>
     </div>
-    <div class="album-tracks">
-        <ul>
-            <li><a href="#">Track #1</a></li>
-            <li><a href="#">Track #2</a></li>
-            <li><a href="#">Track #3</a></li>
-        </ul>
+    <div class="app-item-info-content">
+        <p class="artist-name" data-bind="text: Name"></p>
+        <p class="artist-bio" data-bind="text: Biography"></p>
+        <p class="artist-albums" data-bind=""></p>
     </div>
 </div>

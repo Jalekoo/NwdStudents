@@ -4,23 +4,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Nwd.BackOffice.Impl;
+using Nwd.BackOffice.Model;
 
 namespace Nwd.Web.Areas.Api.Controllers
 {
     public class TrackController : ApiController
     {
+        AlbumRepository _repo;
+
+        public TrackController()
+        {
+            _repo = new AlbumRepository();
+        }
 
         // GET api/track
-        public IEnumerable<string> Get()
+        public IEnumerable<Track> Get(int idAlbum)
         {
-            return new string[] { "value1", "value2" };
+            return _repo.GetTrack( idAlbum );
         }
 
-        // GET api/track/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/track
         public void Post([FromBody]string value)

@@ -11,6 +11,7 @@
     
     SO.VM.Current.Album = {
         New: new SO.VM.Album(),
+        View: new SO.VM.Album(),
         create: function () {
             var _this = SO.VM.Current.Album;
             if (_this.New.Title().length == 0) return;

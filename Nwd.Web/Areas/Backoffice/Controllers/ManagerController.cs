@@ -17,5 +17,10 @@ namespace Nwd.Web.Areas.Backoffice.Controllers
         {
             return View();
         }
+
+        public ActionResult Artists()
+        {
+            return View();
+        }
     }
 }

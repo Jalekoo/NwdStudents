@@ -34,14 +34,14 @@
     */
     SO.VM.Collection = SO.ViewModel.extend({
         init: function (viewModel, url, options) {
-            options = options || {};
+            options = options || { };
             var _this = this;
 
             this.Items = ko.observableArray([]);
             this.IsFetching = ko.observable(false);
             this.FetchingFailure = ko.observable(false);
             this._super({ url: url });
-            
+     
             this.itemVM = viewModel;
             
         },

@@ -1,27 +1,57 @@
 ﻿@{
     ViewBag.Title = "Albums";
+    ViewBag.CurrentSection = "Album";
 }
 @section Scripts{
     <script type="text/javascript">
         $('a[data-toggle="tooltip"]').tooltip();
     </script>
-    @Scripts.Render("~/bundles/JS/Album")
+    @Scripts.Render( "~/bundles/JS/Album" )
 }
 
 <div id="album-manager" class="carousel slide" data-bind="with: SO.VM.Current.Album">
     <div class="carousel-inner">
-        <div id="section-album-list" class="item active">
+        <div id="section-album-view" class="item active" data-bind="with: SO.VM.Current.Album.View">
+            <div class="app-item-view">
+                <div class="app-item-picture">
+                </div>
+                <div class="app-item-info">
+                    <p data-bind="text: Title"></p>
+                    <p data-bind="text: Artist.Name"></p>
+                    <p data-bind="text: ReleaseDate"></p>
+                </div>
+            </div>
+            <div class="track-list" data-bind="with: Tracks">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Durée</th>
+                        <th>Artistes</th>
+                    </tr>
+                    <tbody data-bind="foreach: Items">
+                        <tr>
+                            <th data-bind="text: Number"></th>
+                            <th data-bind="text: Song"></th>
+                            <th data-bind="text: Duration"></th>
+                            <th>Artistes</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="section-album-list" class="item">
             <div class="title form-inline">
                 <div class="style"></div>
                 <div class="title-inner">
                     <p class="text">Liste des Albums</p>
                     <button class="btn btn-danger pull-right" data-bind="click: create">Ajouter</button>
-                    <input class="pull-right" type="text" placeholder="Titre de l'album" name="AlbumName" data-bind="value: New.Title"/>
+                    <input class="pull-right" type="text" placeholder="Titre de l'album" name="AlbumName" data-bind="value: New.Title" />
                 </div>
             </div>
             <!-- ko with: Collection -->
             <div class="album-list" data-bind="foreach: Items">
-                @Html.Partial("_Album")
+                @Html.Partial( "_Album" )
             </div>
             <!-- /ko -->
         </div>
@@ -35,10 +65,10 @@
                 </div>
             </div>
             <div class="album-create">
-                @Html.Partial("_AlbumForm")
+                @Html.Partial( "_AlbumForm" )
             </div>
         </div>
     </div>
 </div>
- @Html.Partial("Modal/_EditAlbum")
- @Html.Partial("Modal/_AlbumDelete")
+@Html.Partial( "Modal/_EditAlbum" )
+@Html.Partial( "Modal/_AlbumDelete" )
