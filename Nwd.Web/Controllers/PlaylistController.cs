@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Nwd.Web.Controllers
 {
+    [Authorize( Roles = "User" )]
     public class PlaylistController : Controller
     {
         //
         // GET: /Playlist/
 
-        [Authorize( Roles = "User" )]
         public ActionResult Index()
         {
             return View();

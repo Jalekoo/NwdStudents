@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@helper Activate(params string[] sectionName){
+    if( sectionName.Contains( (string)ViewBag.CurrentSection ) ){
+        @: active
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,8 +20,8 @@
             <div class="container">
                 <a class="brand" href="@Url.Action( "Index", "Home", new { Area = "" } )">ShabiOtter Music Apps</a>
                 <ul class="nav">
-                    <li class="active"><a href="@Url.Action( "Index", "Home", new { Area = "" } )">Bibliothèque musicale</a></li>
-                    <li><a href="@Url.Action( "Index", "Playlist", new { Area = "" } )">Mes playlists</a></li>
+                    <li class="@Activate("Home")"><a href="@Url.Action( "Index", "Home", new { Area = "" } )">Bibliothèque musicale</a></li>
+                    <li class="@Activate("Playlists")"><a href="@Url.Action( "Index", "Playlist", new { Area = "" } )">Mes playlists</a></li>
                 </ul>
                 <ul class="nav pull-right">
                     <li><a href="@Url.Action( "Albums", "Manager", new { Area = "Backoffice" } )">Backoffice</a></li>

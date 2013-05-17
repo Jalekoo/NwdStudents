@@ -1,4 +1,7 @@
 ﻿@model Nwd.Authentication.ViewModels.LogInViewModel
+@{
+    ViewBag.CurrentSection = "LogIn";
+}
 
 <h3>Veuillez vous connecter</h3>
 @using( Html.BeginForm( "LogIn", "Account", FormMethod.Post, new { @class = "form-horizontal" } ) )

@@ -253,6 +253,7 @@
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Shared\_MenuAuthorize.cshtml" />
     <Content Include="Views\Shared\_MenuUnauthorize.cshtml" />
+    <Content Include="Views\Playlist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
