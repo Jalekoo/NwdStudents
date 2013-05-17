@@ -46,8 +46,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nwd.Authentication\Nwd.Authentication.csproj">
+      <Project>{aeab37f7-82f1-4eeb-b551-8d0e6762da3c}</Project>
+      <Name>Nwd.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nwd.BackOffice\Nwd.BackOffice.csproj">
       <Project>{C38E58AF-920C-488B-B0A6-420D8B50B060}</Project>
       <Name>Nwd.BackOffice</Name>

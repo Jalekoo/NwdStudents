@@ -10,6 +10,7 @@ using System.Data.Entity;
 using Nwd.BackOffice.Model;
 using Nwd.FrontOffice.Model;
 using System.Diagnostics;
+using Nwd.Authentication.Model;
 
 namespace Nwd.Web
 {
@@ -25,23 +26,6 @@ namespace Nwd.Web
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
             BundleConfig.RegisterBundles( BundleTable.Bundles );
-            
-
-            Database.SetInitializer( new DropCreateDatabaseAlways<NwdBackOfficeContext>() );
-            Database.SetInitializer( new DropCreateDatabaseAlways<NwdFrontOfficeContext>() );
-
-            using( var ctx = new NwdBackOfficeContext() )
-            {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
-            }
-            using( var ctx = new NwdFrontOfficeContext() )
-            {
-                ctx.Database.Initialize( true );
-                Debug.Assert( ctx.Database.Exists() );
-                Console.WriteLine( ctx.Database.Connection.ConnectionString );
-            }
         }
     }
 }

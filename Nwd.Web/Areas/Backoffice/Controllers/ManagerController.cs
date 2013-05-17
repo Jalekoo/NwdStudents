@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace Nwd.Web.Areas.Backoffice.Controllers
 {
+
+    [Authorize(Roles="Administrator")]
     public class ManagerController : Controller
     {
         //
@@ -15,6 +17,5 @@ namespace Nwd.Web.Areas.Backoffice.Controllers
         {
             return View();
         }
-
     }
 }
