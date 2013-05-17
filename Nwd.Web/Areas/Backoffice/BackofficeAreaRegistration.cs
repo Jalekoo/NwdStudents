@@ -17,7 +17,7 @@ namespace Nwd.Web.Areas.Backoffice
             context.MapRoute(
                 "Backoffice_default",
                 "Backoffice/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Manager", action = "Index", id = UrlParameter.Optional },
                 new[] { "Nwd.Web.Areas.Backoffice.Controllers" }
             );
         }

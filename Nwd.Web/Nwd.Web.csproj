@@ -220,6 +220,7 @@
     <Content Include="Areas\Backoffice\Views\Manager\_AlbumForm.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\Modal\_EditAlbum.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\Modal\_AlbumDelete.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Manager\Index.cshtml" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
