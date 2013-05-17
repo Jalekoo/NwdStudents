@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - ShabiOtter Application</title>
-    @Styles.Render("~/bundles/CSS/bootstrap")
-    @Styles.Render("~/bundles/CSS/Layout")
-    
-    @RenderSection("Styles", false)
-    
+    @Styles.Render( "~/bundles/CSS/bootstrap" )
+    @Styles.Render( "~/bundles/CSS/Layout" )
+
+    @RenderSection( "Styles", false )
+
 </head>
 <body>
     <div class="navbar navbar-fixed-top" style="position: relative;">
@@ -15,13 +15,19 @@
             <div class="container">
                 <a class="brand" href="@Url.Action( "Index", "Home", new { Area = "" } )">ShabiOtter Music Apps</a>
                 <ul class="nav">
-                    <li class="active"><a href="#">Bibliothèque musicale</a></li>
-                    <li><a href="#">Mes playlists</a></li>
+                    <li class="active"><a href="@Url.Action( "Index", "Home", new { Area = "" } )">Bibliothèque musicale</a></li>
+                    <li><a href="@Url.Action( "Index", "Playlist", new { Area = "" } )">Mes playlists</a></li>
                 </ul>
                 <ul class="nav pull-right">
                     <li><a href="@Url.Action( "Index", "Manager", new { Area = "Backoffice" } )">Backoffice</a></li>
-                    <li><a href="#"><i class="icon-wrench icon-white"></i>&nbsp;Mes paramètres</a></li>
-                    <li><a href="@Url.Action( "LogOut", "Account", new { Area = "" } )"><i class="icon-user icon-white"></i>&nbsp;Déconnexion</a></li>
+                    @if( HttpContext.Current.User.Identity.IsAuthenticated == true && HttpContext.Current.User.IsInRole( "User" ) )
+                    {
+                        @Html.Partial( "_MenuAuthorize" )
+                    }
+                    else
+                    {
+                        @Html.Partial( "_MenuUnauthorize" )
+                    }
                 </ul>
             </div>
         </div>
@@ -29,9 +35,9 @@
     <div id="main" class="content container">
         @RenderBody()
     </div>
-    @Scripts.Render("~/bundles/JS/jquery")
-    @Scripts.Render("~/bundles/JS/bootstrap")
-    @Scripts.Render("~/bundles/JS/knockout")
+    @Scripts.Render( "~/bundles/JS/jquery" )
+    @Scripts.Render( "~/bundles/JS/bootstrap" )
+    @Scripts.Render( "~/bundles/JS/knockout" )
     <script type="text/javascript">
         var SO = {
             VM: {
@@ -44,6 +50,6 @@
         ko.applyBindings(SO.VM.Current, $('#main')[0]);
     </script>
     @RenderSection( "Scripts", false )
-    
+
 </body>
 </html>

@@ -131,6 +131,7 @@
     <Compile Include="Areas\Backoffice\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlaylistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +251,8 @@
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Shared\_MenuAuthorize.cshtml" />
+    <Content Include="Views\Shared\_MenuUnauthorize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
