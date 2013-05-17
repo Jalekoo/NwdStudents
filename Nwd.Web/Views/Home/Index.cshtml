@@ -1,21 +1,43 @@
 ﻿@{
     ViewBag.CurrentSection = "Home";
 }
-<h2>Index</h2>
-<div class="album-list">
-    <div class="row-fuid album">
-        <div class="span4 album-info">
-            <p>ShabOtter</p>
-            <p>Shabi & Otter</p>
-            <p>2013</p>
+<h2>La bibliothèque musicale</h2>
+<div class="accordion" id="accordion2" data-bind="with: SO.VM.Current.AlbumList">
+    <div class="accordion-group" data-bind="foreach: Items">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" data-bind="attr: { href: '#' + Id() }">Album: <span data-bind="    text: Title"></span>
+            </a>
         </div>
-        <div class="span8">
-            <ul>
-                <li><a href="#">Track #1</a></li>
-                <li><a href="#">Track #2</a></li>
-                <li><a href="#">Track #3</a></li>
-                
-            </ul>
+        <div data-bind="attr: { id: Id() }" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Durée</th>
+                            <th>Aristote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Durée</td>
+                            <td>Artiste</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    @Scripts.Render( "~/bundles/JS/Album" )
+    <script type="text/javascript">
+
+        SO.VM.Current = {
+            AlbumList: new SO.VM.AlbumCollection()
+        }
+    </script>
+}
