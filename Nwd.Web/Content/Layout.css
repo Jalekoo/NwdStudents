@@ -50,13 +50,13 @@
 }
 .title{
 	width: 100%;
-	height: 40px;
+	height: 50px;
 	margin: 10px 0;
 	background-color: rgb(64, 66, 78);
 }
 .title .style{
 	display: block;
-	width: 10px;height: 40px;
+	width: 10px;height: 50px;
 	float:left;
 	margin:0;
 	padding: 0;
@@ -74,7 +74,7 @@
 	text-shadow: 1px 1px black;
 }
 .title .title-inner{
-	padding-top: 5px;
+	padding-top: 6px;
 }
 .title-inner .pull-right{
 	margin: 0 5px;
