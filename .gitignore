@@ -30,4 +30,4 @@ packages/
 *.mp3
 Nwd.Web/App_Data/*
 Nwd.Web/connectionStrings.config
-Nwd.Tests/connectionStrings.config
+Nwd.Tests/App.config
