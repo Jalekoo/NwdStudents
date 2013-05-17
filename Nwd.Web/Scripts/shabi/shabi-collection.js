@@ -1,7 +1,5 @@
 ﻿(function () {
-    var Acw = window.Acw;
-    Acw.VM = window.Acw.VM = window.Acw.VM || {};
-
+    var SO = window.SO;
     var _setDefaultValues = function (list) {
         list.Count("0");
         list.CanGoNext(false);
@@ -11,7 +9,7 @@
         list.PagerMemory("");
     };
 
-    Acw.VM.Filters = Acw.ViewModel.extend({
+    SO.VM.Filters = SO.ViewModel.extend({
         init: function (collection, model) {
             this._super( null, null, model);
             var t;
@@ -24,50 +22,28 @@
         },
 
         onPropertyChanged: function (onPropertyChanged) {
-            Acw.VM.onPropertyChanged(this, onPropertyChanged);
+            SO.VM.onPropertyChanged(this, onPropertyChanged);
         }
     });
 
     /*
     *   PagedCollection CK.Search ViewModel compliant !
-    *   viewModel: Acw.ViewModel. The VM of the item collection
+    *   viewModel: SO.ViewModel. The VM of the item collection
     *   url: The query url
     *   [dataModel] :  The initial model
     */
-    Acw.VM.PagedCollection = Acw.ViewModel.extend({
+    SO.VM.Collection = SO.ViewModel.extend({
         init: function (viewModel, url, options) {
             options = options || {};
-            var dataModel = options.dataModel || {};
-            var filterModel = options.filterModel || Acw.VM.Filters,
-                filterDataModel = options.filterDataModel || null;
-
             var _this = this;
 
-            this.PerPage = ko.observable(10);
-            this.Count = ko.observable("0");
-
-            this.Filters = new filterModel(this, filterDataModel);
-
-            this.Sorters = ko.observableArray([]);
-            this.CanGoNext = ko.observable(false);
-            this.CanGoPrev = ko.observable(false);
-            this.Move = ko.observable(0);
-            this.MemoryKey = ko.observable("");
-            this.PagerMemory = ko.observable("");
-
             this.Items = ko.observableArray([]);
-
-            this._super({ url: url, reverseMode: false }, '', dataModel);
-            
-            this.itemVM = viewModel;
             this.IsFetching = ko.observable(false);
             this.FetchingFailure = ko.observable(false);
-
-            this.PerPage.subscribe(function (newVal) {
-                _this.Move(0);
-                _this.MemoryKey("");
-                _this.PagerMemory("");
-            });
+            this._super({ url: url });
+            
+            this.itemVM = viewModel;
+            
         },
         mappingOptions: function () {
             var _this = this;
@@ -85,18 +61,6 @@
                     }
                 })
             };
-        },
-        next: function () {
-            this.Move(1);
-            if (this.CanGoNext()) this.fetch();
-        },
-        more: function () {
-            this.Move(2);
-            if (this.CanGoNext()) this.fetch();
-        },
-        prev: function () {
-            this.Move(-1);
-            if (this.CanGoPrev()) this.fetch();
         },
 
         //Override
@@ -125,40 +89,16 @@
             var _this = this;
             if (!this.settings.url) return;
 
-            this.FetchingFailure(false);
-            this.IsFetching(true);
-            function direction(){
-                if (_this.Move() < 0) return '/prev';
-                else if (_this.Move() == 0) return '';
-                else return '/next';     
-            }
-            Acw.ViewModel.request({
-                'url': _this.settings.url + direction(),
+            _this.FetchingFailure(false);
+            _this.IsFetching(true);
+
+            SO.ViewModel.request({
+                'url': _this.settings.url,
                 useGet: true, //_this.Move() == 0,
-                parameters: {
-                    perPage: _this.PerPage,
-                    filters: _this.Filters,
-                    sorters: _this.Sorters,
-                    pagerMemory: _this.PagerMemory,
-                    memoryKey: _this.MemoryKey
-                }
+                parameters: {}
             }, function (data) {    //Success
-                var more;
-                
-                if (_this.Move() === 2)
-                {
-                    more = ko.mapping.fromJS(data, _this.mappingOptions());
-                    if (typeof more !== 'undefined') {
-                        $.each(more.Items(), function (idx, e) {
-                            _this.settings.reverseMode === false ? _this.Items.push(e) : _this.Items.unshift(e);
-                        });
-                    }
-                    _this.map(data, { ignore: ["Items"] });
-                }
-                else {
-                    ko.mapping.fromJS(data, _this.mappingOptions(), _this);
-                }
-                
+                ko.mapping.fromJS({ Items : data }, _this.mappingOptions(), _this);
+
                 if(typeof callback === 'function') callback();
                 _this.IsFetching(false);
 

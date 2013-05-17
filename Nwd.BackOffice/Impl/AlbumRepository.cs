@@ -84,6 +84,7 @@ namespace Nwd.BackOffice.Impl
 
         public Album EditAlbum( Album album, HttpServerUtilityBase server )
         {
+
             using( var ctx = new NwdBackOfficeContext() )
             {
                 album = ctx.Albums.Attach( album );

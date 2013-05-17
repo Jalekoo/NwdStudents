@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "";
+}
+@section Scripts{
+    <script type="text/javascript">
+        $('a[data-toggle="tooltip"]').tooltip();
+    </script>
+    @Scripts.Render("~/bundles/JS/Album")
+}
+
+<div id="album-manager" class="carousel slide" data-bind="with: SO.VM.Current.Album">
+    <div class="carousel-inner">
+        <div id="section-album-list" class="item active">
+            <div class="title form-inline">
+                <div class="style"></div>
+                <div class="title-inner">
+                    <p class="text">Liste des Albums</p>
+                    <button class="btn btn-danger pull-right" data-bind="click: create">Ajouter</button>
+                    <input class="pull-right" type="text" placeholder="Titre de l'album" name="AlbumName" data-bind="value: New.Title"/>
+                </div>
+            </div>
+            <!-- ko with: Collection -->
+            <div class="album-list" data-bind="foreach: Items">
+                <div class="album">
+                    <div class="album-info">
+                        <div class="album-info-inner">
+                            <div class="album-info-wrapper">
+                                <p class="album-name" data-bind="text: Title"></p>
+                                <p class="album-artist" data-bind="text: Artist.Name">Shabi & Otter</p>
+                                <p class="album-year">2013</p>
+                            </div>
+                            <div class="album-info-actions">
+                                <ul>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="left" title="delete" data-bind="click: function () { SO.VM.Current.Album.deleteAlbum($data); }"><i class="icon-white icon-remove"></i></a>
+                                    </li>
+                                    <li>
+                                         <a href="#" data-toggle="tooltip" data-placement="left" title="edit" data-bind="click: function () { SO.VM.Current.Album.editAlbum($data); }"><i class="icon-white icon-edit"></i></a>
+                                    </li>
+                                    <li> 
+                                        <a href="#" data-toggle="tooltip" data-placement="left" title="play"><i class="icon-white icon-play-circle"></i></a>
+                                    </li>
+                                    <li> 
+                                        <a href="#" data-toggle="tooltip" data-placement="left" title="download"><i class="icon-white icon-download-alt" ></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="album-tracks">
+                        <ul>
+                            <li><a href="#">Track #1</a></li>
+                            <li><a href="#">Track #2</a></li>
+                            <li><a href="#">Track #3</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <div id="section-album-create" class="item" data-bind="with: New">
+            <div class="title form-inline">
+                <div class="style" style="background-color: green"></div>
+                <div class="title-inner">
+                    <p class="text" data-bind="text: 'Nouvel Album : ' + Title()"></p>
+                    <button class="btn btn-success pull-right" data-bind="click: function () { $parent.addAlbum($data); }">Ajouter</button>
+                    <button class="btn btn pull-right" data-bind="click: $parent.list">Retour</button>
+                </div>
+            </div>
+            <div class="album-create">
+                @Html.Partial("_AlbumForm")
+            </div>
+        </div>
+    </div>
+</div>
+ @Html.Partial("Modal/_EditAlbum")
+ @Html.Partial("Modal/_AlbumDelete")

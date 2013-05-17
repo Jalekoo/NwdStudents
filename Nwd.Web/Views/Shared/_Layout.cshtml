@@ -28,14 +28,20 @@
     <div id="main" class="container">
         @RenderBody()
     </div>
-    <script type="text/javascript">
-        var SO = {
-            VM: {}
-        }
-    </script>
     @Scripts.Render("~/bundles/JS/jquery")
     @Scripts.Render("~/bundles/JS/bootstrap")
     @Scripts.Render("~/bundles/JS/knockout")
+    <script type="text/javascript">
+        var SO = {
+            VM: {
+                Current: {}
+            }
+        }
+        SO.rootUrl = '/';
+        window.SO = SO;
+
+        ko.applyBindings(SO.VM.Current, $('#main')[0]);
+    </script>
     @RenderSection( "Scripts", false )
     
 </body>

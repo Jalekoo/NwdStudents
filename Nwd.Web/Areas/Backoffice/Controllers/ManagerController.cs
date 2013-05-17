@@ -11,7 +11,7 @@ namespace Nwd.Web.Areas.Backoffice.Controllers
         //
         // GET: /Backoffice/Album/
 
-        public ActionResult Index()
+        public ActionResult Albums()
         {
             return View();
         }

@@ -15,8 +15,9 @@
             <div class="container">
                 <a class="brand" href="#">ShabiOtter Apps</a>
                 <ul class="nav">
-                    <li class="active"><a href="#">Mes albums</a></li>
-                    <li><a href="#">Mes playlists</a></li>
+                    <li class="active"><a href="#">Musiques</a></li>
+                    <li><a href="#">Artists</a></li>
+                    <li><a href="#">Albums</a></li>
                 </ul>
                 <ul class="nav pull-right">
                     <li><a href="#"><i class="icon-wrench"></i>&nbsp;Mes paramètres</a></li>
@@ -31,7 +32,20 @@
     @Scripts.Render("~/bundles/JS/jquery")
     @Scripts.Render("~/bundles/JS/bootstrap")
     @Scripts.Render("~/bundles/JS/knockout")
+
+    <script type="text/javascript">
+        var SO = {
+            VM: {
+                Current: {}
+            }
+        }
+        SO.rootUrl = '/';
+        window.SO = SO;
+    </script>
+    @Scripts.Render("~/bundles/JS/shabi")
     @RenderSection( "Scripts", false )
-    
+    <script type="text/javascript">
+        ko.applyBindings(SO.VM.Current, $('#main')[0]);
+    </script>
 </body>
 </html>
