@@ -55,11 +55,11 @@
   <ItemGroup>
     <Compile Include="IPlaylistManagement.cs" />
     <Compile Include="Impl\PlaylistManagement.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="ViewModels\AlbumViewModel.cs" />
     <Compile Include="Model\NwdFrontOfficeContext.cs" />
     <Compile Include="Model\Playlist.cs" />
     <Compile Include="Model\PlaylistTrack.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Impl\MusicReader.cs" />
     <Compile Include="IMusicReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

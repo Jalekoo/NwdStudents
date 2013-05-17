@@ -19,6 +19,7 @@ namespace Nwd.Web
 
             bundles.Add( new ScriptBundle( "~/bundles/JS/Album" ).Include( "~/Scripts/VM/common.js" ).Include( "~/Scripts/VM/Album.js" ) );
             bundles.Add( new ScriptBundle( "~/bundles/JS/Artist" ).Include( "~/Scripts/VM/common.js" ).Include( "~/Scripts/VM/Artist.js" ) );
+            bundles.Add( new ScriptBundle( "~/bundles/JS/Playlist" ).Include( "~/Scripts/VM/Playlist.js" ) );
             #endregion
 
             #region CSS

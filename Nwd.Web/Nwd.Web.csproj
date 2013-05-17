@@ -127,6 +127,8 @@
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Api\Controllers\ArtistController.cs" />
+    <Compile Include="Areas\Api\Controllers\PlaylistController.cs" />
+    <Compile Include="Areas\Api\Controllers\PlaylistTrackController.cs" />
     <Compile Include="Areas\Api\Controllers\TrackController.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\Controllers\ManagerController.cs" />
@@ -238,6 +240,7 @@
     <Content Include="Scripts\shabi\shabi-vm.js" />
     <Content Include="Scripts\shabi\shabi-collection.js" />
     <Content Include="Scripts\vm\Album.js" />
+    <Content Include="Scripts\vm\Playlist.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

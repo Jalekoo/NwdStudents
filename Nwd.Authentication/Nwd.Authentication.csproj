@@ -61,7 +61,12 @@
     <Compile Include="ViewModels\LogInViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Nwd.FrontOffice\Nwd.FrontOffice.csproj">
+      <Project>{9a01cce5-c016-4e3a-bfcc-1124c6390083}</Project>
+      <Name>Nwd.FrontOffice</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

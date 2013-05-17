@@ -7,6 +7,11 @@ namespace Nwd.FrontOffice.Model
 {
     public class User
     {
+        public User()
+        {
+            Playlists = new HashSet<Playlist>();
+        }
+
         public int Id { get; set; }
 
         public string UserName { get; set; }

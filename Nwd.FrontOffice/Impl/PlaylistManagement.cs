@@ -9,7 +9,15 @@ namespace Nwd.FrontOffice.Impl
 {
     public class PlaylistManagement : IPlaylistManagement
     {
-        public void AddNewPlaylistToCurrentUser( string playlistName )
+        public IEnumerable<Playlist> GetAllPlaylist()
+        {
+            using( var ctx = new NwdFrontOfficeContext() )
+            {
+                return ctx.UserInfo.Where(u => u.UserName == HttpContext.Current.User.Identity.Name).SelectMany(m => m.Playlists).ToList();
+            }
+        }
+
+        public Playlist AddNewPlaylistToCurrentUser( string playlistName )
         {
             if( String.IsNullOrWhiteSpace( playlistName ) ) throw new ArgumentNullException();
 
@@ -20,20 +28,22 @@ namespace Nwd.FrontOffice.Impl
             }
             using( var ctx = new NwdFrontOfficeContext() )
             {
-                var user = ctx.Users.SingleOrDefault( u => u.UserName == httpContext.User.Identity.Name );
+                var user = ctx.UserInfo.SingleOrDefault( u => u.UserName == httpContext.User.Identity.Name );
                 if( user == null )
                 {
-                    user = ctx.Users.Add( new User
+                    user = ctx.UserInfo.Add( new User
                     {
                         UserName = httpContext.User.Identity.Name
                     } );
                 }
-                user.Playlists.Add( new Playlist
+                Playlist p = new Playlist
                 {
                     Title = playlistName
-                } );
+                };
+                user.Playlists.Add( p );
 
                 ctx.SaveChanges();
+                return ctx.Playlists.Where( m => m.Title == playlistName ).FirstOrDefault();
             }
         }
 
@@ -46,10 +56,13 @@ namespace Nwd.FrontOffice.Impl
             var httpContext = HttpContext.Current;
             using( var ctx = new NwdFrontOfficeContext() )
             {
-                var user = ctx.Users.SingleOrDefault( u => u.UserName == httpContext.User.Identity.Name );
+                var user = ctx.UserInfo.SingleOrDefault( u => u.UserName == httpContext.User.Identity.Name );
                 if( user == null )
                 {
-                    throw new ApplicationException( "user does not exists" );
+                    user = ctx.UserInfo.Add( new User
+                    {
+                        UserName = httpContext.User.Identity.Name
+                    } );
                 }
 
                 var playList = user.Playlists.SingleOrDefault( p => p.Title == playlistName );
@@ -63,6 +76,16 @@ namespace Nwd.FrontOffice.Impl
                     SongUrl = songUrl
                 } );
 
+                ctx.SaveChanges();
+            }
+        }
+
+        public void DeleteAPlaylist( string playlistName )
+        {
+            using( var ctx = new NwdFrontOfficeContext() )
+            {
+                Playlist p = ctx.Playlists.Where( m => m.Title == playlistName ).FirstOrDefault();
+                ctx.Playlists.Remove( p );
                 ctx.SaveChanges();
             }
         }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nwd.FrontOffice.Model;
 
 namespace Nwd.Authentication.Model
 {
@@ -13,6 +14,7 @@ namespace Nwd.Authentication.Model
         public User()
         {
             Roles = new HashSet<Role>();
+            Playlists = new HashSet<Playlist>();
         }
 
         [Key]
@@ -49,5 +51,7 @@ namespace Nwd.Authentication.Model
         public DateTime LastLockedOutDate { get; set; }
         
         public DateTime LastLockoutDate { get; set; }
+
+        public ICollection<Playlist> Playlists { get; set; }
     }
 }

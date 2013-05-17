@@ -11,9 +11,10 @@ namespace Nwd.FrontOffice.Model
         public NwdFrontOfficeContext()
             : base( "NwdMusikFront" )
         {
+            Configuration.ProxyCreationEnabled = false;
         }
-        
-        public DbSet<User> Users { get; set; }
+
+        public DbSet<User> UserInfo { get; set; }
 
         public DbSet<Playlist> Playlists { get; set; }
 

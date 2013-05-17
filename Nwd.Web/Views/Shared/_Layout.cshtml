@@ -1,6 +1,8 @@
-﻿@helper Activate(params string[] sectionName){
-    if( sectionName.Contains( (string)ViewBag.CurrentSection ) ){
-        @: active
+﻿@helper Activate( params string[] sectionName )
+{
+    if( sectionName.Contains( (string)ViewBag.CurrentSection ) )
+    {
+    @: active
     }
 }
 <!DOCTYPE html>
@@ -20,8 +22,8 @@
             <div class="container">
                 <a class="brand" href="@Url.Action( "Index", "Home", new { Area = "" } )">ShabiOtter Music App</a>
                 <ul class="nav">
-                    <li class="@Activate("Home")"><a href="@Url.Action( "Index", "Home", new { Area = "" } )">Bibliothèque musicale</a></li>
-                    <li class="@Activate("Playlists")"><a href="@Url.Action( "Index", "Playlist", new { Area = "" } )">Mes playlists</a></li>
+                    <li class="@Activate( "Home" )"><a href="@Url.Action( "Index", "Home", new { Area = "" } )">Bibliothèque musicale</a></li>
+                    <li class="@Activate( "Playlists" )"><a href="@Url.Action( "Index", "Playlist", new { Area = "" } )">Mes playlists</a></li>
                 </ul>
                 <ul class="nav pull-right">
                     <li><a href="@Url.Action( "Albums", "Manager", new { Area = "Backoffice" } )">Backoffice</a></li>
@@ -51,10 +53,12 @@
         }
         SO.rootUrl = '/';
         window.SO = SO;
-
+    </script>
+    @Scripts.Render( "~/bundles/JS/shabi" )
+    @RenderSection( "Scripts", false )
+    <script type="text/javascript">
         ko.applyBindings(SO.VM.Current, $('#main')[0]);
     </script>
-    @RenderSection( "Scripts", false )
 
 </body>
 </html>

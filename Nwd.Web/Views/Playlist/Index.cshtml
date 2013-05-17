@@ -2,32 +2,90 @@
     ViewBag.CurrentSection = "Playlists";
 }
 
-<h3>Mes playlists</h3>
-<div class="accordion" id="playlists">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#playlists" href="#collapseOne">Mon nom de playlist 1
-            </a>
+
+
+<div id="modals">
+    <div id="CreatePlaylistModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bind="with: SO.VM.Current.PlaylistModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Ajouter une playlist</h3>
         </div>
-        <div id="collapseOne" class="accordion-body collapse in">
+        <div class="modal-body">
+            <div class="control-group">
+                <label class="control-label" for="playlist">Nom de la playlist</label>
+                <div class="controls">
+                    <input type="text" id="playlist" placeholder="Playlist" data-bind="value: Title">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+            <button class="btn btn-primary" data-bind="click: $parent.CreatePlaylist">Ajouter</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style="float: right">
+        <a href="#CreatePlaylistModal" data-toggle="modal" class="btn btn-primary">Ajouter une playlist</a>
+    </div>
+    <h3>Mes playlists</h3>
+</div>
+<div class="accordion" id="playlists" data-bind="with: SO.VM.Current.PlayList">
+    <div class="accordion-group" data-bind="foreach: Items">
+        <div class="accordion-heading">
+            <a href="#" style="float: right; margin: 6px" data-bind="click: SO.VM.Current.RemovePlaylist"><i class="icon-remove"></i></a>
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#playlists" data-bind="text: Title, attr: { href: '#' + Id() }">Mon nom de playlist 1</a>
+        </div>
+        <div data-bind="attr: { id: Id() }" class="accordion-body collapse">
             <div class="accordion-inner">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Morceau</th>
                             <th>Album</th>
-                            <th>Artiste</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
+                    <!-- ko if: !Tracks -->
                     <tbody>
                         <tr>
+                            <td colspan="2">Aucune track dans cette playlist</td>
+                        </tr>
+                    </tbody>
+                    <!-- /ko -->
+                    <tbody data-bind="with: Tracks">
+                        <tr data-bind="foreach: Items">
                             <td>un morceau !</td>
-                            <td>un album!</td>
                             <td>Pouf !</td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+<!-- ko if: SO.VM.Current.PlayList.Items().length == 0   -->
+Vous n'avez aucune playlist
+<!-- /ko -->
+
+@section Scripts
+{
+    @Scripts.Render( "~/bundles/JS/Playlist" );
+    <script type="text/javascript">
+
+        SO.VM.Current = {
+            PlaylistModal: new SO.VM.Playlist(),
+            PlayList: new SO.VM.PlaylistCollection(),
+            CreatePlaylist: function (playlist) {
+                playlist.create(function () {
+                    SO.VM.Current.PlayList.fetch();
+                });
+            },
+            RemovePlaylist: function (playlist) {
+                playlist.remove(function () {
+                });
+            }
+        }
+    </script>
+}
