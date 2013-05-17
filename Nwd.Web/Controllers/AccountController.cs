@@ -43,6 +43,11 @@ namespace Nwd.Web.Controllers
             return View( model );
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

@@ -1,6 +1,9 @@
-﻿@helper Activate(params string[] sectionName){
-    if( sectionName.Contains( (string)ViewBag.CurrentSection ) ){
-        @: active
+﻿@helper Activate( params string[] sectionName )
+{
+    if( sectionName.Contains( (string)ViewBag.CurrentSection ) )
+    {
+    @: active
     }
 }
-<li class="@Activate("LogIn")"><a href="@Url.Action( "LogIn", "Account", new { Area = "" } )"><i class="icon-user icon-white"></i>&nbsp;Se connecter</a></li>
+<li class="@Activate( "LogIn" )"><a href="@Url.Action( "LogIn", "Account", new { Area = "" } )"><i class="icon-user icon-white"></i>&nbsp;Se connecter</a></li>
+<li class="@Activate( "Register" )"><a href="@Url.Action( "Register", "Account", new { Area = "" } )"><i class="icon-plus-sign icon-white"></i>&nbsp;S'inscrire</a></li>
