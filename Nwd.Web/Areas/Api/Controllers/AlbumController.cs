@@ -40,12 +40,14 @@ namespace Nwd.Web.Areas.Api.Controllers
         // PUT api/album/5
         public void Put([FromBody]Album album)
         {
+
             _repo.EditAlbum( album, new HttpServerUtilityWrapper( HttpContext.Current.Server ) );
         }
 
         // DELETE api/album/5
         public void Delete(int id)
         {
+
         }
     }
 }

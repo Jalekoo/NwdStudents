@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nwd.BackOffice.Model
 {
+
     public class Album
     {
         public int? Id { get; set; }
@@ -21,7 +22,7 @@ namespace Nwd.BackOffice.Model
 
         public string Type { get; set; }
 
-        public virtual ICollection<Track> Tracks { get; set; }
+        public virtual List<Track> Tracks { get; set; }
 
         public virtual Artist Artist { get; set; }
 

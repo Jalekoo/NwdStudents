@@ -11,6 +11,7 @@ namespace Nwd.BackOffice.Model
         public NwdBackOfficeContext()
             : base("NwdMusik")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Artist> Artists { get; set; }

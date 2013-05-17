@@ -11,8 +11,13 @@ namespace Nwd.Web
             bundles.IgnoreList.Ignore( "*.map", OptimizationMode.Always );
             bundles.Add( new ScriptBundle( "~/bundles/JS/jquery" ).Include( "~/Scripts/jquery-{version}.js" ).Include("~/Scripts/jquery-ui-1.10.2.js" ));
             bundles.Add( new ScriptBundle( "~/bundles/JS/bootstrap").Include("~/Scripts/bootstrap/js/bootstrap.js") );
-            bundles.Add( new ScriptBundle( "~/bundles/JS/knockout" ).Include( "~/Scripts/knockout-2.2.1.js" ) );
-            
+            bundles.Add( new ScriptBundle( "~/bundles/JS/knockout" ).Include( "~/Scripts/knockout-2.2.1.js", "~/Scripts/knockout.mapping-2.4.1.js" ) );
+            bundles.Add( new ScriptBundle( "~/bundles/JS/shabi" ).
+                Include( "~/Scripts/shabi/shabi-class.js",
+                    "~/Scripts/shabi/shabi-vm.js",
+                    "~/Scripts/shabi/shabi-collection.js" ) );
+
+            bundles.Add( new ScriptBundle( "~/bundles/JS/Album" ).Include( "~/Scripts/VM/Album.js" ) );
             #endregion
 
             #region CSS

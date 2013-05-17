@@ -128,8 +128,7 @@
     <Compile Include="Areas\Api\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Api\Controllers\TrackController.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
-    <Compile Include="Areas\Backoffice\Controllers\AlbumController.cs" />
-    <Compile Include="Areas\Backoffice\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +215,10 @@
     <Content Include="Areas\Backoffice\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Backoffice\Views\_ViewStart.cshtml" />
     <Content Include="connectionStrings.config" />
+    <Content Include="Areas\Backoffice\Views\Manager\Albums.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Manager\_AlbumForm.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Shared\Modal\_EditAlbum.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Shared\Modal\_AlbumDelete.cshtml" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
@@ -226,6 +229,11 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\knockout.mapping-2.4.1.js" />
+    <Content Include="Scripts\shabi\shabi-class.js" />
+    <Content Include="Scripts\shabi\shabi-vm.js" />
+    <Content Include="Scripts\shabi\shabi-collection.js" />
+    <Content Include="Scripts\vm\Album.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
