@@ -17,7 +17,8 @@ namespace Nwd.Web
                     "~/Scripts/shabi/shabi-vm.js",
                     "~/Scripts/shabi/shabi-collection.js" ) );
 
-            bundles.Add( new ScriptBundle( "~/bundles/JS/Album" ).Include( "~/Scripts/VM/Album.js" ) );
+            bundles.Add( new ScriptBundle( "~/bundles/JS/Album" ).Include( "~/Scripts/VM/common.js" ).Include( "~/Scripts/VM/Album.js" ) );
+            bundles.Add( new ScriptBundle( "~/bundles/JS/Artist" ).Include( "~/Scripts/VM/common.js" ).Include( "~/Scripts/VM/Artist.js" ) );
             #endregion
 
             #region CSS
