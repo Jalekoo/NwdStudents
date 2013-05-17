@@ -13,15 +13,21 @@
     <div class="navbar navbar-fixed-top" style="position: relative;">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="@Url.Action( "Index", "Home", new { Area = "Backoffice" } )">ShabiOtter Backoffice</a>
+                <a class="brand" href="@Url.Action( "Albums", "Manager", new { Area = "Backoffice" } )">ShabiOtter Backoffice</a>
                 <ul class="nav">
-                    <li class="active"><a href="#">Musiques</a></li>
-                    <li><a href="#">Artists</a></li>
-                    <li><a href="#">Albums</a></li>
+                    <li class="active"><a href="@Url.Action( "Albums", "Manager" )">Albums</a></li>
+                    <li><a href="#">Musiques</a></li>
+                    <li><a href="#">Artistes</a></li>
                 </ul>
                 <ul class="nav pull-right">
-                    <li><a href="#"><i class="icon-wrench"></i>&nbsp;Mes paramètres</a></li>
-                    <li><a href="@Url.Action( "LogOut", "Account", new { Area = "" } )"><i class="icon-user"></i>&nbsp;Déconnexion</a></li>
+                    @if( HttpContext.Current.User.Identity.IsAuthenticated == true && HttpContext.Current.User.IsInRole( "Administrator" ) )
+                    {
+                        @Html.Partial( "_MenuAuthorize" )
+                    }
+                    else
+                    {
+                        @Html.Partial( "_MenuUnauthorize" )
+                    }
                 </ul>
             </div>
         </div>
@@ -42,7 +48,7 @@
         SO.rootUrl = '/';
         window.SO = SO;
     </script>
-    @Scripts.Render("~/bundles/JS/shabi")
+    @Scripts.Render( "~/bundles/JS/shabi" )
     @RenderSection( "Scripts", false )
     <script type="text/javascript">
         ko.applyBindings(SO.VM.Current, $('#main')[0]);

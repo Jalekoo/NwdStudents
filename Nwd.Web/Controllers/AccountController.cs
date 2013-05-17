@@ -31,15 +31,8 @@ namespace Nwd.Web.Controllers
                 if( Membership.ValidateUser( model.Username, model.Password ) )
                 {
                     FormsAuthentication.SetAuthCookie( model.Username, model.RememberMe );
-                    if( Url.IsLocalUrl( returnUrl ) && returnUrl.Length > 1 && returnUrl.StartsWith( "/" )
-                        && !returnUrl.StartsWith( "//" ) && !returnUrl.StartsWith( "/\\" ) )
-                    {
-                        return RedirectToAction( returnUrl );
-                    }
-                    else
-                    {
-                        return RedirectToAction( "Index", "Home", new { Area = "Backoffice" } );
-                    }
+
+                    return RedirectToAction( "Redirect" );
                 }
                 else
                 {
@@ -54,6 +47,18 @@ namespace Nwd.Web.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction( "LogIn" );
+        }
+
+        public ActionResult Redirect()
+        {
+            if( HttpContext.User.Identity.IsAuthenticated == true )
+            {
+                if( HttpContext.User.IsInRole( "Administrator" ) )
+                    return RedirectToAction( "Albums", "Manager", new { Area = "Backoffice" } );
+
+                return RedirectToAction( "Index", "Playlist", new { Area = "" } );
+            }
+            return RedirectToAction( "Index", "Home", new { Area = "" } );
         }
     }
 }

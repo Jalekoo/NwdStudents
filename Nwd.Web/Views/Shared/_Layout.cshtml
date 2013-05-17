@@ -19,7 +19,7 @@
                     <li><a href="@Url.Action( "Index", "Playlist", new { Area = "" } )">Mes playlists</a></li>
                 </ul>
                 <ul class="nav pull-right">
-                    <li><a href="@Url.Action( "Index", "Manager", new { Area = "Backoffice" } )">Backoffice</a></li>
+                    <li><a href="@Url.Action( "Albums", "Manager", new { Area = "Backoffice" } )">Backoffice</a></li>
                     @if( HttpContext.Current.User.Identity.IsAuthenticated == true && HttpContext.Current.User.IsInRole( "User" ) )
                     {
                         @Html.Partial( "_MenuAuthorize" )
