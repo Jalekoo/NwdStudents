@@ -13,14 +13,14 @@
     <div class="navbar navbar-fixed-top" style="position: relative;">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="#">ShabiOtter Apps</a>
+                <a class="brand" href="@Url.Action( "Index", "Home", new { Area = "" } )">ShabiOtter Music Apps</a>
                 <ul class="nav">
-                    <li class="active"><a href="#">Mes albums</a></li>
+                    <li class="active"><a href="#">Bibliothèque musicale</a></li>
                     <li><a href="#">Mes playlists</a></li>
                 </ul>
                 <ul class="nav pull-right">
-                    <li><a href="#"><i class="icon-wrench"></i>&nbsp;Mes paramètres</a></li>
-                    <li><a href="#"><i class="icon-user"></i>&nbsp;Déconnexion</a></li>
+                    <li><a href="#"><i class="icon-wrench icon-white"></i>&nbsp;Mes paramètres</a></li>
+                    <li><a href="@Url.Action( "LogOut", "Account", new { Area = "" } )"><i class="icon-user icon-white"></i>&nbsp;Déconnexion</a></li>
                 </ul>
             </div>
         </div>
