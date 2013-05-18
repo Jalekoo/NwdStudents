@@ -127,6 +127,7 @@
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Api\Controllers\ArtistController.cs" />
+    <Compile Include="Areas\Api\Controllers\PictureController.cs" />
     <Compile Include="Areas\Api\Controllers\PlaylistController.cs" />
     <Compile Include="Areas\Api\Controllers\PlaylistTrackController.cs" />
     <Compile Include="Areas\Api\Controllers\SongController.cs" />
@@ -210,6 +211,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Content\white.png" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Album\album.jpg" />
     <Content Include="Images\Artist\artist.jpg" />
     <Content Include="Scripts\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-responsive.min.css" />
@@ -238,6 +240,7 @@
     </Content>
     <Content Include="Areas\Backoffice\Views\Manager\_ArtistForm.cshtml" />
     <Content Include="Areas\Backoffice\Views\Manager\Musics.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Shared\_PhotoUpload.cshtml" />
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
@@ -245,6 +248,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.fineuploader-3.5.0.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
@@ -256,6 +260,8 @@
     <Content Include="Scripts\vm\Playlist.js" />
     <Content Include="Scripts\vm\Artist.js" />
     <Content Include="Scripts\vm\common.js" />
+    <Content Include="Tmp\album.jpg" />
+    <Content Include="Tmp\artist.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -280,6 +286,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Backoffice\Models\" />
+    <Folder Include="Images\Tmp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

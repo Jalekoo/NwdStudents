@@ -31,3 +31,5 @@ packages/
 Nwd.Web/App_Data/*
 Nwd.Web/connectionStrings.config
 Nwd.Tests/App.config
+Nwd.Web/Tmp/*
+Nwd.Web/Content/musics/*

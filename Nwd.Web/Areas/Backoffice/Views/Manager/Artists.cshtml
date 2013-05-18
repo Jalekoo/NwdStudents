@@ -11,9 +11,18 @@
 }
 <div id="artist-manager" class="carousel slide" data-bind="with: SO.VM.Current.Artist">
     <div class="carousel-inner">
-        <div id="section-album-list" class="item active">
+        <div id="section-artist-view" class="item" data-bind="with: SO.VM.Current.Artist.View">
             <div class="title form-inline">
-                <div class="style"></div>
+                <div class="style" style="background-color:#3498db" ></div>
+                <div class="title-inner">
+                    <p class="text" data-bind="text: Name"></p>
+                    <button class="btn btn-info pull-right" data-bind="click: $parent.Navigate.toList">Retour à la liste</button>
+                </div>
+            </div>
+        </div>
+        <div id="section-artist-list" class="item active">
+            <div class="title form-inline">
+                <div class="style" style="background-color: #e74c3c"></div>
                 <div class="title-inner">
                     <p class="text">Liste des Artistes</p>
                     <button class="btn btn-danger pull-right" data-bind="click: create">Ajouter</button>
@@ -28,7 +37,7 @@
         </div>
         <div id="section-artist-create" class="item" data-bind="with: New">
             <div class="title form-inline">
-                <div class="style" style="background-color: green"></div>
+                <div class="style" style="background-color: #18bc9c"></div>
                 <div class="title-inner">
                     <p class="text" data-bind="text: 'Nouvel Artiste : ' + Name()"></p>
                     <button class="btn btn-success pull-right" data-bind="click: function () { $parent.addArtist($data); }">Ajouter</button>

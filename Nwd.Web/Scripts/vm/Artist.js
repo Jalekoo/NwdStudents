@@ -1,15 +1,21 @@
 ﻿(function (undefined) {
     var Navigate = {
         toList: function () {
-            $('#artist-manager').carousel(0);
+            $('#artist-manager').carousel(1);
         },
         toCreate: function () {
-            $('#artist-manager').carousel(1);
+            $('#artist-manager').carousel(2);
+        },
+        toView: function (artist) {
+            SO.VM.Current.Artist.View = artist;
+            ko.applyBindings(SO.VM.Current.Artist, $('#section-artist-view')[0]);
+            $('#artist-manager').carousel(0);
         }
     }
 
     SO.VM.Current.Artist = {
         New: new SO.VM.Artist(),
+        View: new SO.VM.Artist(),
         create: function () {
             var _this = SO.VM.Current.Artist;
             if (_this.New.Name().length == 0) return;
@@ -44,7 +50,8 @@
         Collection: new SO.VM.ArtistCollection(),
         Modal: {
             Edit: new SO.VM.Artist()
-        }
+        },
+        'Navigate': Navigate
     }
     $(function () {
         $('.carousel').carousel({

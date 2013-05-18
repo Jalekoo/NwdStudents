@@ -1,11 +1,16 @@
 ﻿(function (undefined) {
     var SO = window.SO;
     var Navigate = {
-        toList: function () {
+        toView: function (album) {
+            SO.VM.Current.Album.View = album;
+            ko.applyBindings(SO.VM.Current.Album, $('#section-album-view')[0]);
             $('#album-manager').carousel(0);
         },
-        toCreate: function () {
+        toList: function () {
             $('#album-manager').carousel(1);
+        },
+        toCreate: function () {
+            $('#album-manager').carousel(2);
         }
     }
     
@@ -46,7 +51,8 @@
         Collection: new SO.VM.AlbumCollection(),
         Modal: {
             Edit: new SO.VM.Album()
-        }
+        },
+        'Navigate' : Navigate
     }
     $(function () {
         $('.carousel').carousel({

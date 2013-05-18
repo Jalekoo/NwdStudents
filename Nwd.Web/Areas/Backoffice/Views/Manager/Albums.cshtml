@@ -3,25 +3,46 @@
     ViewBag.CurrentSection = "Album";
 }
 @section Scripts{
-    <script type="text/javascript">
-        $('a[data-toggle="tooltip"]').tooltip();
-    </script>
+    
     @Scripts.Render( "~/bundles/JS/Album" )
+<script type="text/javascript">
+    $('a[data-toggle="tooltip"]').tooltip();
+    $('#fine-uploader').fineUploader({
+        request: {
+            endpoint: 'api/picture',
+        }
+    }).on('complete', function (e, id, name, json) {
+        alert('OK ' + json);
+        SO.VM.Current.Album.New.CoverImagePath(json.Id);
+    }).on('error', function (e, id, name, reason) {
+        alert('ERROR');
+    });
+    </script>
+    /*
+        Faire les uploads de photos albums, artistes
+        Terminer la Artist liste
+    */
 }
 
 <div id="album-manager" class="carousel slide" data-bind="with: SO.VM.Current.Album">
     <div class="carousel-inner">
-        <div id="section-album-view" class="item active" data-bind="with: SO.VM.Current.Album.View">
-            <div class="app-item-view">
-                <div class="app-item-picture">
+        <div id="section-album-view" class="item" data-bind="with: SO.VM.Current.Album.View">
+            <div class="title form-inline">
+                <div class="style" style="background-color:#3498db" ></div>
+                <div class="title-inner">
+                    <p class="text" data-bind="text: Title"></p>
+                    <button class="btn btn-info pull-right" data-bind="click: $parent.Navigate.toList">Retour à la liste</button>
                 </div>
+            </div>
+            <div class="app-item-view">
+                
                 <div class="app-item-info">
                     <p data-bind="text: Title"></p>
                     <p data-bind="text: Artist.Name"></p>
                     <p data-bind="text: ReleaseDate"></p>
                 </div>
             </div>
-            <div class="track-list" data-bind="with: Tracks">
+            <div class="track-list">
                 <table class="table">
                     <tr>
                         <th>#</th>
@@ -29,7 +50,7 @@
                         <th>Durée</th>
                         <th>Artistes</th>
                     </tr>
-                    <tbody data-bind="foreach: Items">
+                    <tbody data-bind="foreach: Tracks">
                         <tr>
                             <th data-bind="text: Number"></th>
                             <th data-bind="text: Song"></th>
@@ -40,9 +61,9 @@
                 </table>
             </div>
         </div>
-        <div id="section-album-list" class="item">
+        <div id="section-album-list" class="item active">
             <div class="title form-inline">
-                <div class="style"></div>
+                <div class="style" style="background-color: #e74c3c"></div>
                 <div class="title-inner">
                     <p class="text">Liste des Albums</p>
                     <button class="btn btn-danger pull-right" data-bind="click: create">Ajouter</button>
@@ -57,7 +78,7 @@
         </div>
         <div id="section-album-create" class="item" data-bind="with: New">
             <div class="title form-inline">
-                <div class="style" style="background-color: green"></div>
+                <div class="style" style="background-color: #18bc9c"></div>
                 <div class="title-inner">
                     <p class="text" data-bind="text: 'Nouvel Album : ' + Title()"></p>
                     <button class="btn btn-success pull-right" data-bind="click: function () { $parent.addAlbum($data); }">Ajouter</button>

@@ -10,6 +10,13 @@ namespace Nwd.BackOffice.Impl
 {
     public class AlbumRepository
     {
+        FileRepository _fileRepo;
+
+        public AlbumRepository()
+        {
+            _fileRepo = new FileRepository();
+        }
+        
         public List<Album> GetAllAlbums()
         {
             using( var ctx = new NwdBackOfficeContext() )
@@ -32,7 +39,7 @@ namespace Nwd.BackOffice.Impl
 
         public Album CreateAlbum( Album album, HttpServerUtilityBase server )
         {
-            if( album == null )
+                if( album == null )
             {
                 throw new ArgumentNullException( "album" );
             }
@@ -48,24 +55,27 @@ namespace Nwd.BackOffice.Impl
                 string directory;
                 string physDirectory;
                 EnsureDirectory( album, server, out directory, out physDirectory );
-
-                foreach( var track in album.Tracks )
+                if( album.Tracks != null )
                 {
-                    HttpPostedFileBase file = track.File;
-                    if( file == null ) throw new ApplicationException( "You must add a file to a track" );
+                    foreach( var track in album.Tracks )
+                    {
+                        HttpPostedFileBase file = track.File;
+                        if( file == null ) throw new ApplicationException( "You must add a file to a track" );
 
-                    string fileName = SaveFile( physDirectory, file );
-                    track.FileRelativePath = Path.Combine( directory, fileName );
+                        string fileName = SaveFile( physDirectory, file );
+                        track.FileRelativePath = Path.Combine( directory, fileName );
+                    }
                 }
 
-                if( album.CoverFile != null )
-                {
-                    string coverFileName = "cover.jpg";
-                    string physPath = Path.Combine( physDirectory, coverFileName );
-                    album.CoverFile.SaveAs( physPath );
+                if( album.CoverImagePath != null || album.CoverImagePath.Length > 0 )
+                    album.CoverImagePath = "album.jpg";
+                
+                string coverFileName = "cover.jpg";
+                string physPath = Path.Combine( physDirectory, coverFileName );
+                _fileRepo.SaveFile( album.CoverImagePath, physPath );
 
-                    album.CoverImagePath = Path.Combine( directory, coverFileName );
-                }
+                album.CoverImagePath = Path.Combine( directory, coverFileName );
+                
 
                 ctx.SaveChanges();
                 return album;

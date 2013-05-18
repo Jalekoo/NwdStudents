@@ -61,8 +61,10 @@
             this.ReleaseDate = ko.observable(new Date().getMonth() + '/' + new Date().getDate() + '/' + new Date().getFullYear());
             this.Type = ko.observable("");
             this.Artist = new SO.VM.Artist();
+            this.CoverImagePath = ko.observable("");
             this._super({}, model, 'Id');
-            //this.Tracks = new SO.VM.TrackCollection(this.Id());
+            this.Tracks = {};
+            
             //this.Tracks.fetch();
         },
         //override

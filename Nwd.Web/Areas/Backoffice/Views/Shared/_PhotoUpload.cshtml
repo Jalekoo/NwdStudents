@@ -1,0 +1,59 @@
+﻿<script type="text/javascript">
+    
+    $(function () {
+        var loader = new Acw.Camera.loader();
+        imageManager = new Acw.Camera.imageManager();
+
+        var uploaderTemplate =
+                '<div class="qq-uploader">' +
+                '<span class="btn acw-btn acw-btn-common acw-btn-span qq-upload-button">Upload Photo</span></div>' +
+            '<div style="display:none;" class="qq-upload-drop-area"><span>Déplacer les fichiers ici</span></div>' +
+            '<span style="display:none;" class="qq-drop-processing"><span>Processing dropped files...</span><span class="qq-drop-processing-spinner"></span></span>' +
+                '<ul class="qq-upload-list"></ul>';
+
+        var uploaderFileTemplate = '<li data-uploader-fileid="{0}" style="display:none">' +
+                '<div class="qq-progress-bar" style="display: none; width: 100%;"></div>' +
+                '<span class="qq-upload-finished"></span>' +
+                '<span class="qq-upload-file"></span>' +
+                '<span class="qq-upload-spinner"></span>' +
+                '<span class="qq-upload-size"></span>' +
+                '<a class="qq-upload-cancel" href="#">Cancel</a>' +
+                '<span class="qq-upload-failed-text">Failed</span>' +
+                '<span class="qq-upload-status-text"></span>' +
+            '</li>';
+
+        $('.qq-upload').fineUploader({
+            request: {
+                endpoint: SO.rootUrl + 'api/picture/album'
+            },
+            dragAndDrop: {
+                hideDropzones: false
+            },
+            display:{
+                fileSizeOnSubmit: false
+            },
+            multiple: false,
+            classes: {
+                success: 'alert alert-success',
+                fail: 'alert alert-error'
+            },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+                sizeLimit: 50 * 1024 
+                },
+            //messages: uploaderMessages, 
+            template: uploaderTemplate,
+            fileTemplate: uploaderFileTemplate
+        }).on("upload", function(){
+            $('.loading-gif').fadeIn(100);
+            loader.show();
+           
+        }).on('complete', function (event, id, filename, responseJSON) {
+            imageManager.displayImage( Acw.Hooks.profilePhotoUploaded( responseJSON.ProfilePhoto ), 'profile-picture' );
+            $('.loading-gif').fadeOut(100);
+            loader.hide();
+           
+            $('#upload-photo').fadeOut(200);
+        });
+    });
+</script>
