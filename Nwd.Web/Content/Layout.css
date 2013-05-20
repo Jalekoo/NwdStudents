@@ -97,6 +97,10 @@
 	transition: .3s;
 	float:left;
 }
+.app-item-picture{
+	width: 170px;height: 170px;
+	margin:auto;
+}
 .app-item-picture-wrapper .app-item-picture{
 	width: 160px;height: 160px;
 	float: left;

@@ -7,13 +7,17 @@
     @Scripts.Render( "~/bundles/JS/Album" )
 <script type="text/javascript">
     $('a[data-toggle="tooltip"]').tooltip();
-    $('#fine-uploader').fineUploader({
+    $('.fine-uploader').fineUploader({
         request: {
-            endpoint: 'api/picture',
+            endpoint: 'api/picture'
+        },
+        validation: {
+            allowedExtensions: ['jpg']
         }
     }).on('complete', function (e, id, name, json) {
-        alert('OK ' + json);
         SO.VM.Current.Album.New.CoverImagePath(json.Id);
+        $('#form-picture').children().remove();
+        $('#form-picture').prepend('<img class="img-polaroid" src="Tmp/' + json.Id + '" />');
     }).on('error', function (e, id, name, reason) {
         alert('ERROR');
     });

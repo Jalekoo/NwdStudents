@@ -67,7 +67,7 @@ namespace Nwd.BackOffice.Impl
                     }
                 }
 
-                if( album.CoverImagePath != null || album.CoverImagePath.Length > 0 )
+                if( album.CoverImagePath == null || album.CoverImagePath.Length == 0 )
                     album.CoverImagePath = "album.jpg";
                 
                 string coverFileName = "cover.jpg";
@@ -77,7 +77,7 @@ namespace Nwd.BackOffice.Impl
                 album.CoverImagePath = Path.Combine( directory, coverFileName );
                 
 
-                ctx.SaveChanges();
+                ctx.SaveChanges();  
                 return album;
             }
         }
@@ -123,12 +123,15 @@ namespace Nwd.BackOffice.Impl
 
                     //else do not change the FileRelativePath since it is send by the form in an hidden input
                 }
-
-                if( album.CoverFile != null )
+                if( GetAlbumForEdit( (int)album.Id ).CoverImagePath != album.CoverImagePath )
                 {
+                    if( album.CoverImagePath == null || album.CoverImagePath.Length == 0 )
+                        album.CoverImagePath = "album.jpg";
+
                     string coverFileName = "cover.jpg";
                     string physPath = Path.Combine( physDirectory, coverFileName );
-                    album.CoverFile.SaveAs( physPath );
+                    _fileRepo.SaveFile( album.CoverImagePath, physPath );
+
                     album.CoverImagePath = Path.Combine( directory, coverFileName );
                 }
 

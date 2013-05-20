@@ -38,9 +38,9 @@ namespace Nwd.Web.Areas.Api.Controllers
         {
             using( Image img = Image.FromStream( s ) )
             {
-                string tmstmp = DateTime.UtcNow.Ticks.ToString();
+                string tmstmp = DateTime.UtcNow.Ticks.ToString() + ".jpg";
                 string path = HttpContext.Current.Server.MapPath("~/Tmp/" + tmstmp);
-                img.Save(path);
+                img.Save(path, ImageFormat.Jpeg);
 
                 return new FileRsult
                 {
