@@ -7,25 +7,24 @@
     @Scripts.Render( "~/bundles/JS/Album" )
 <script type="text/javascript">
     $('a[data-toggle="tooltip"]').tooltip();
-    $('.fine-uploader').fineUploader({
-        request: {
-            endpoint: 'api/picture'
-        },
-        validation: {
-            allowedExtensions: ['jpg']
-        }
-    }).on('complete', function (e, id, name, json) {
-        SO.VM.Current.Album.New.CoverImagePath(json.Id);
-        $('#form-picture').children().remove();
-        $('#form-picture').prepend('<img class="img-polaroid" src="Tmp/' + json.Id + '" />');
-    }).on('error', function (e, id, name, reason) {
-        alert('ERROR');
+    $(function () {
+        $('.fine-uploader').fineUploader({
+            request: {
+                endpoint: 'api/picture'
+            },
+            validation: {
+                allowedExtensions: ['jpg']
+            }
+        }).on('complete', function (e, id, name, json) {
+            SO.VM.Current.Album.New.CoverImagePath(json.Id);
+            $('#form-picture').children().remove();
+            $('#form-picture').prepend('<img class="img-polaroid" src="Tmp/' + json.Id + '" />');
+        }).on('error', function (e, id, name, reason) {
+            alert('ERROR');
+        });
     });
+    
     </script>
-    /*
-        Faire les uploads de photos albums, artistes
-        Terminer la Artist liste
-    */
 }
 
 <div id="album-manager" class="carousel slide" data-bind="with: SO.VM.Current.Album">
@@ -39,7 +38,9 @@
                 </div>
             </div>
             <div class="app-item-view">
-                
+                <div class="app_item_picture">
+                    <img src="" height="200" width="200" data-bind="attr: { src: CoverImagePath }"/>
+                </div>
                 <div class="app-item-info">
                     <p data-bind="text: Title"></p>
                     <p data-bind="text: Artist.Name"></p>

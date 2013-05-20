@@ -23,7 +23,7 @@ namespace Nwd.Web
             #endregion
 
             #region CSS
-            bundles.Add( new StyleBundle( "~/bundles/CSS/Layout" ).Include("~/Content/Layout.css") );
+            bundles.Add( new StyleBundle( "~/bundles/CSS/Layout" ).Include( "~/Content/Layout.css", "~/Content/fineuploader-3.5.0.css" ) );
             bundles.Add( new StyleBundle( "~/bundles/CSS/bootstrap" ).Include( "~/Scripts/bootstrap/css/bootstrap.css",
                 "~/Scripts/bootstrap/css/bootstrap-responsive.css" ) );
             #endregion
